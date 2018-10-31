@@ -24,15 +24,20 @@
 #define _FX_OS_MACOSX_ 7
 #define _FX_OS_ANDROID_ 12
 #define _FX_OS_WASM_ 13
+#define _FX_OS_QT_ 69
 
 // _FX_PLATFORM_ values;
 #define _FX_PLATFORM_WINDOWS_ 1  // _FX_OS_WIN32_ or _FX_OS_WIN64_.
 #define _FX_PLATFORM_LINUX_ 2    // _FX_OS_LINUX_ or _FX_OS_WASM_.
 #define _FX_PLATFORM_APPLE_ 3    // _FX_OS_MACOSX_ always.
 #define _FX_PLATFORM_ANDROID_ 4  // _FX_OS_ANDROID_ always.
+#define _FXM_PLATFORM_QT_ 5
 
 #ifndef _FX_OS_
-#if defined(__ANDROID__)
+#if defined(__QT__)
+#define _FX_OS_ _FX_OS_QT_
+#define _FXM_PLATFORM_ _FXM_PLATFORM_QT_
+#elif defined(__ANDROID__)
 #define _FX_OS_ _FX_OS_ANDROID_
 #define _FX_PLATFORM_ _FX_PLATFORM_ANDROID_
 #elif defined(_WIN32)
