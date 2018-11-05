@@ -77,11 +77,11 @@ static void _src_skip_data(struct jpeg_decompress_struct* cinfo, long num) {
 }
 
 static boolean _src_fill_buffer(j_decompress_ptr cinfo) {
-  return 0;
+  return static_cast<boolean>(false);
 }
 
 static boolean _src_resync(j_decompress_ptr cinfo, int desired) {
-  return 0;
+  return static_cast<boolean>(false);
 }
 
 static void _error_do_nothing(j_common_ptr cinfo) {}
@@ -146,7 +146,7 @@ static bool JpegLoadInfo(pdfium::span<const uint8_t> src_span,
     jpeg_destroy_decompress(&cinfo);
     return false;
   }
-  int ret = jpeg_read_header(&cinfo, true);
+  int ret = jpeg_read_header(&cinfo, static_cast<boolean>(true));
   if (ret != JPEG_HEADER_OK) {
     jpeg_destroy_decompress(&cinfo);
     return false;
@@ -222,7 +222,7 @@ bool CCodec_JpegDecoder::InitDecode() {
   }
   cinfo.image_width = m_OrigWidth;
   cinfo.image_height = m_OrigHeight;
-  int ret = jpeg_read_header(&cinfo, true);
+  int ret = jpeg_read_header(&cinfo, static_cast<boolean>(true));
   if (ret != JPEG_HEADER_OK)
     return false;
 
